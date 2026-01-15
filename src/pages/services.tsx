@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { PageHero } from "@/components/layout/page-hero";
 import { motion } from "framer-motion";
 
 import excavatorImage from "@assets/generated_images/excavator.jpg";
@@ -53,15 +54,14 @@ export default function Services() {
     <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-grow pt-20">
-        <section className="bg-slate-50 py-20 border-b border-border">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">Our Services</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              We provide comprehensive engineering and construction solutions using the latest technologies and equipment.
-            </p>
-          </motion.div>
-        </section>
+      <main className="flex-grow">
+        {/* Hero */}
+        <PageHero
+          titleEn="Our Services"
+          titleAr="خدماتنا"
+          subtitleEn="Integrated contracting, civil engineering, and electrical solutions."
+          subtitleAr="حلول متكاملة للمقاولات والهندسة المدنية والأعمال الكهربائية."
+        />
 
         <section className="py-20 overflow-hidden">
           <div className="container mx-auto px-4 space-y-24">

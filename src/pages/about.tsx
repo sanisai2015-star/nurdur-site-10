@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { PageHero } from "@/components/layout/page-hero";
 import { CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage, translations } from "@/lib/i18n";
@@ -12,13 +13,14 @@ export default function About() {
     <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-grow pt-20">
-        <section className="bg-slate-50 py-20 border-b border-border">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">{t.header}</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">{t.subHeader}</p>
-          </motion.div>
-        </section>
+      <main className="flex-grow">
+        {/* Hero */}
+        <PageHero
+          titleEn="About Us"
+          titleAr="من نحن"
+          subtitleEn="Company overview, values, and capabilities."
+          subtitleAr="نبذة عن الشركة وقيمها وقدراتها."
+        />
 
         <section className="py-20">
           <div className="container mx-auto px-4 space-y-24">

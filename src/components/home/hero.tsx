@@ -1,107 +1,91 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
-import { useLanguage, translations } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-/**
- * NOTE:
- * Place your real videos here:
- *  - src/assets/generated_videos/video1.mp4
- *  - src/assets/generated_videos/video2.mp4
- *  - src/assets/generated_videos/video3.mp4
- */
-import video1 from "@assets/generated_videos/video1.mp4";
-import video2 from "@assets/generated_videos/video2.mp4";
-import video3 from "@assets/generated_videos/video3.mp4";
-
-const videos = [video1, video2, video3];
+import heroImage from "@assets/generated_images/excavator.jpg";
 
 export function Hero() {
   const { language } = useLanguage();
-  const t = translations[language].hero;
-  const [currentVideo, setCurrentVideo] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentVideo((prev) => (prev + 1) % videos.length);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
-      <div className="absolute inset-0 z-0 bg-slate-900">
-        <AnimatePresence mode="wait">
-          <motion.video
-            key={currentVideo}
-            src={videos[currentVideo]}
-            autoPlay
-            loop
-            muted
-            playsInline
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.5 }}
-            className="w-full h-full object-cover"
-          />
-        </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/60 to-transparent" />
-      </div>
+    <section className="relative min-h-[92vh] pt-24 flex items-center overflow-hidden">
+      {/* Background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${heroImage})` }}
+        aria-hidden="true"
+      />
+      {/* Overlays (dark + gradient) */}
+      <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-black/15"
+        aria-hidden="true"
+      />
 
-      <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center pt-16">
-        <div className="max-w-2xl text-white space-y-6">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="inline-block py-1 px-3 rounded-full bg-primary/20 border border-primary/30 text-primary-foreground text-sm font-semibold mb-4 backdrop-blur-sm">
-              {t.tag}
-            </span>
-            <h1 className="text-5xl md:text-6xl font-heading font-bold leading-tight mb-2">
-              {t.title} <br />
-              <span className="text-primary">{t.titleAccent}</span>
-            </h1>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-200 max-w-lg leading-relaxed"
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-3xl">
+          {/* Badge */}
+          <div
+            className={cn(
+              "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm",
+              "bg-white/10 border border-white/15 text-white/90 backdrop-blur"
+            )}
           >
-            {t.subtitle}
-          </motion.p>
+            {language === "en" ? (
+              <span>EST. 2022 &nbsp;|&nbsp; Classification: Fifth Rank A</span>
+            ) : (
+              <span>تأسست 2022 &nbsp;|&nbsp; التصنيف: الدرجة الخامسة (A)</span>
+            )}
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 pt-4"
-          >
+          {/* Headline */}
+          <h1 className="mt-6 text-5xl md:text-6xl font-bold tracking-tight text-white">
+            {language === "en" ? (
+              <>
+                Building Iraq&apos;s <br />
+                <span className="text-primary">Future Infrastructure</span>
+              </>
+            ) : (
+              <>
+                نبني مستقبل العراق <br />
+                <span className="text-primary">ببنية تحتية قوية</span>
+              </>
+            )}
+          </h1>
+
+          {/* Sub text */}
+          <p className="mt-6 text-lg md:text-xl text-white/80 leading-relaxed">
+            {language === "en"
+              ? "NURDAR Al Faisal provides world-class general contracting, civil engineering, and infrastructure development services."
+              : "توفر نوردار الفيصل خدمات المقاولات العامة والهندسة المدنية وتطوير البنى التحتية بمعايير عالية."}
+          </p>
+
+          {/* CTA */}
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <Link href="/projects">
-              <Button size="lg" className="text-lg px-8 py-6 shadow-lg shadow-primary/25 rounded-md">
-                {t.viewProjects}
+              <Button size="lg" className="w-full sm:w-auto">
+                {language === "en" ? "View Our Projects" : "عرض مشاريعنا"}
               </Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-md">
-                {t.contactUs}
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto bg-white/0 text-white border-white/30 hover:bg-white/10"
+              >
+                {language === "en" ? "Contact Us" : "تواصل معنا"}
               </Button>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      <div className="absolute bottom-8 right-8 z-20 flex gap-2">
-        {videos.map((_, i) => (
-          <div
-            key={i}
-            className={cn(
-              "h-1 transition-all duration-300 rounded-full",
-              currentVideo === i ? "bg-primary w-8" : "bg-white/30 w-4"
-            )}
-          />
-        ))}
+      {/* Bottom-right indicators (subtle) */}
+      <div className="absolute bottom-8 right-8 z-10 hidden md:flex gap-2" aria-hidden="true">
+        <span className="h-1 w-10 rounded-full bg-primary" />
+        <span className="h-1 w-3 rounded-full bg-white/20" />
+        <span className="h-1 w-3 rounded-full bg-white/20" />
       </div>
     </section>
   );

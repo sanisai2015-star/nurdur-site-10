@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { PageHero } from "@/components/layout/page-hero";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,19 +22,14 @@ export default function Contact() {
     <div className="min-h-screen bg-background flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-grow pt-20">
-        <section className="bg-slate-50 py-20 border-b border-border">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
-              {language === "en" ? "Contact Us" : "تواصل معنا"}
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              {language === "en"
-                ? "Get in touch with our team for project inquiries, quotes, or partnership opportunities."
-                : "تواصل مع فريقنا للاستفسارات أو عروض الأسعار أو فرص الشراكة."}
-            </p>
-          </motion.div>
-        </section>
+      <main className="flex-grow">
+        {/* Hero */}
+        <PageHero
+          titleEn="Contact Us"
+          titleAr="تواصل معنا"
+          subtitleEn="Talk to our team for inquiries, partnerships, and quotes."
+          subtitleAr="تواصل مع فريقنا للاستفسارات والشراكات وطلبات عروض الأسعار."
+        />
 
         <section className="py-20">
           <div className="container mx-auto px-4">

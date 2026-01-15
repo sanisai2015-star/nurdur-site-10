@@ -9,10 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <img src="/logo.jpg" alt="NURDAR Al Faisal Logo" className="h-10 w-auto object-contain rounded-md" />
-              <h3 className="text-white font-heading font-bold text-xl">NURDAR AL FAISAL</h3>
-            </div>
+            <h3 className="text-white font-heading font-bold text-xl">NURDAR AL FAISAL</h3>
             <p className="text-sm leading-relaxed text-slate-400">
               Leading General Contracting Company in Iraq specializing in building construction, infrastructure, and electrical works.
             </p>
@@ -60,12 +57,8 @@ export function Footer() {
                 <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <span>
                   Palestine St., Baghdad, Iraq<br />
-                  Palestine Street
+                  Mayslon Square
                 </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-primary shrink-0" />
-                <a href="tel:+9647901523478" className="hover:text-white transition-colors">+964 790 152 3478</a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-primary shrink-0" />
@@ -73,7 +66,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-primary shrink-0" />
-                <a href="mailto:sabah.j.d1972@gmail.com" className="hover:text-white transition-colors">sabah.j.d1972@gmail.com</a>
+                <a href="mailto:companyemaar@gmail.com" className="hover:text-white transition-colors">companyemaar@gmail.com</a>
               </li>
             </ul>
           </div>

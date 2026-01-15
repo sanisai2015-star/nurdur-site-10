@@ -14,7 +14,10 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 10);
+    const onScroll = () => {
+      const y = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      setIsScrolled(y > 10);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);

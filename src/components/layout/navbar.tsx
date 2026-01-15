@@ -3,12 +3,22 @@ import { useLanguage } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Mail, Phone, Globe } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import logo from "@/assets/logo.png";
 
 export function Navbar() {
   const [location] = useLocation();
   const { language, setLanguage } = useLanguage();
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const navItems = [
     { href: "/", labelEn: "Home", labelAr: "الرئيسية" },
@@ -26,42 +36,48 @@ export function Navbar() {
         "fixed top-0 left-0 right-0 z-50",
         "border-b border-white/10",
         // Transparent premium overlay like the reference screenshot
-        "bg-black/25 backdrop-blur-md"
+        isScrolled ? "bg-black/65 backdrop-blur-md" : "bg-black/25 backdrop-blur-md"
       )}
     >
       {/* Top contact bar */}
-      <div className={cn("hidden md:block","text-white/80")}>
-        <div className="container mx-auto px-4">
-          <div className="h-10 flex items-center justify-end gap-6 text-sm">
-            <a
-              href="tel:+9647728460390"
-              className={cn("inline-flex items-center gap-2 hover:text-primary transition-colors")}
-            >
-              <Phone className="h-4 w-4" />
-              +964 772 846 0390
-            </a>
-            <a
-              href="mailto:companyemaar@gmail.com"
-              className={cn("inline-flex items-center gap-2 hover:text-primary transition-colors")}
-            >
-              <Mail className="h-4 w-4" />
-              companyemaar@gmail.com
-            </a>
+      {!isScrolled && (
+        <div className={cn("hidden md:block", "text-white/80")}>
+          <div className="container mx-auto px-4">
+            <div className="h-10 flex items-center justify-end gap-6 text-sm">
+              <a
+                href="tel:+9647728460390"
+                className={cn(
+                  "inline-flex items-center gap-2 hover:text-primary transition-colors"
+                )}
+              >
+                <Phone className="h-4 w-4" />
+                +964 772 846 0390
+              </a>
+              <a
+                href="mailto:companyemaar@gmail.com"
+                className={cn(
+                  "inline-flex items-center gap-2 hover:text-primary transition-colors"
+                )}
+              >
+                <Mail className="h-4 w-4" />
+                companyemaar@gmail.com
+              </a>
 
-            <button
-              onClick={() => setLanguage(language === "en" ? "ar" : "en")}
-              className={cn(
-                "inline-flex items-center gap-2 rounded-md px-3 py-1",
-                isHome ? "hover:bg-white/10" : "hover:bg-secondary"
-              )}
-              aria-label="Toggle language"
-            >
-              <Globe className="h-4 w-4" />
-              {language === "en" ? "العربية" : "English"}
-            </button>
+              <button
+                onClick={() => setLanguage(language === "en" ? "ar" : "en")}
+                className={cn(
+                  "inline-flex items-center gap-2 rounded-md px-3 py-1",
+                  isHome ? "hover:bg-white/10" : "hover:bg-secondary"
+                )}
+                aria-label="Toggle language"
+              >
+                <Globe className="h-4 w-4" />
+                {language === "en" ? "العربية" : "English"}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Main nav */}
       <div className="container mx-auto px-4">

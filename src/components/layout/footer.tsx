@@ -34,10 +34,8 @@ export function Footer() {
       ];
 
   const address = isAr
-    ? "شارع فلسطين، بغداد، العراق
-ساحة ميسلون"
-    : "Palestine St., Baghdad, Iraq
-Mayslon Square";
+    ? "شارع فلسطين، بغداد، العراق\nساحة ميسلون"
+    : "Palestine St., Baghdad, Iraq\nMayslon Square";
 
   const copyright = isAr
     ? `© ${new Date().getFullYear()} شركة نوردار الفيصل للمقاولات العامة ذ.م.م. جميع الحقوق محفوظة.`

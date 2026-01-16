@@ -11,6 +11,7 @@ import { useLanguage } from "@/lib/i18n";
 
 export default function Contact() {
   const { language } = useLanguage();
+  const isAr = language === "ar";
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -48,23 +49,27 @@ export default function Contact() {
                   {[
                     {
                       icon: MapPin,
-                      title: language === "en" ? "Our Location" : "العنوان",
-                      content: `Palestine St., Mayslon Square\nBaghdad, Iraq`,
+                      title: isAr ? "العنوان" : "Our Location",
+                      content: isAr
+                        ? `شارع فلسطين، ساحة ميسلون\nبغداد، العراق`
+                        : `Palestine St., Mayslon Square\nBaghdad, Iraq`,
                     },
                     {
                       icon: Phone,
-                      title: language === "en" ? "Phone Numbers" : "أرقام الهاتف",
+                      title: isAr ? "أرقام الهاتف" : "Phone Numbers",
                       content: `+964 772 846 0390\n+964 790 152 3478\n+964 770 443 9842`,
                     },
                     {
                       icon: Mail,
-                      title: language === "en" ? "Email Address" : "البريد الإلكتروني",
+                      title: isAr ? "البريد الإلكتروني" : "Email Address",
                       content: `companyemaar@gmail.com\nsabah.j.d1972@gmail.com`,
                     },
                     {
                       icon: Clock,
-                      title: language === "en" ? "Working Hours" : "ساعات العمل",
-                      content: `Saturday - Thursday: 8:00 AM - 5:00 PM\nFriday: Closed`,
+                      title: isAr ? "ساعات العمل" : "Working Hours",
+                      content: isAr
+                        ? `السبت - الخميس: 8:00 صباحًا - 5:00 مساءً\nالجمعة: عطلة`
+                        : `Saturday - Thursday: 8:00 AM - 5:00 PM\nFriday: Closed`,
                     },
                   ].map((item, i) => (
                     <Card key={i}>

@@ -1,9 +1,12 @@
+import { Counter } from "@/components/ui/Counter";
+
 export function Stats() {
   const stats = [
-    { label: "Capital (IQD)", value: "1 Billion", suffix: "+" },
-    { label: "Projects Completed", value: "25", suffix: "+" },
-    { label: "Machinery Fleet", value: "50", suffix: "+" },
-    { label: "Expert Engineers", value: "100", suffix: "%" },
+    // Keep it numeric so we can animate it.
+    { label: "Capital (IQD)", to: 1, suffix: "B+" },
+    { label: "Projects Completed", to: 25, suffix: "+" },
+    { label: "Machinery Fleet", to: 50, suffix: "+" },
+    { label: "Expert Engineers", to: 100, suffix: "+" },
   ];
 
   return (
@@ -17,7 +20,8 @@ export function Stats() {
           {stats.map((stat, index) => (
             <div key={index} className="p-4">
               <div className="text-4xl md:text-5xl font-heading font-bold mb-2 flex justify-center items-baseline gap-1">
-                {stat.value} <span className="text-2xl text-white/70">{stat.suffix}</span>
+                <Counter to={stat.to} durationMs={1200} />
+                <span className="text-2xl text-white/70">{stat.suffix}</span>
               </div>
               <p className="text-sm md:text-base font-medium text-white/80 uppercase tracking-wider">{stat.label}</p>
             </div>

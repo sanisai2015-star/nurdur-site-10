@@ -94,7 +94,7 @@ export function Navbar() {
             <div className={cn("leading-tight", "text-white")}>
               <div className="font-semibold tracking-wide">NURDAR AL FAISAL</div>
               <div className={cn("text-xs", isHome ? "text-white/70" : "text-muted-foreground")}>
-                GENERAL CONTRACTING
+                {language === "en" ? "GENERAL CONTRACTING" : "المقاولات العامة"}
               </div>
             </div>
           </Link>
